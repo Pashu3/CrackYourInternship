@@ -1,5 +1,5 @@
-
 Optimal solution - 2*0(M*N) 
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -56,6 +56,7 @@ public:
 };
 
 Better Solution - O(M*N), O(M)+O(N)
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
