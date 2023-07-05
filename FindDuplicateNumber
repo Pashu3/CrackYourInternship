@@ -1,0 +1,61 @@
+// BruteForce Approach - O(nlogn),O(1)
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+   //Bruteforce:
+   int n=nums.size();
+   sort(nums.begin(),nums.end());
+   for(int i=0;i<n;i++)
+   {
+     if(nums[i] == nums[i+1])
+     {
+       return nums[i];
+     }
+   }
+   return 0;
+    }
+};
+
+
+// Better Solution using Hashing  - O(N),O(N)
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        unordered_set<int> s;
+        for (int i = 0; i < nums.size(); i++) {
+            if (s.find(nums[i]) != s.end()) {
+                return nums[i];
+            } else {
+                s.insert(nums[i]);
+            }
+        }
+        
+        // No duplicate found
+        return -1;  // or any appropriate value
+    }
+};
+
+
+// Optimal - Cyclic Method - O(N),O(1) 
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+      int slow= nums[0];
+      int fast = nums[0];
+      do {
+        slow = nums[slow];
+        fast= nums[nums[fast]];
+      }while(slow != fast);
+      fast=nums[0];
+      while(slow != fast)
+      {
+        slow= nums[slow];
+        fast=nums[fast];
+      }
+      return slow;
+    }
+};
+
